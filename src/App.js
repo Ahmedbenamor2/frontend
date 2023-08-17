@@ -1,6 +1,6 @@
 import "./App.css";
 import FirstPage from "./components/FirstPage";
-import HomePage, { loader as homeLoader } from "./components/Home";
+import HomePage from "./components/Home";
 import Layout from "./components/Layout";
 import Login, { action as loginAction } from "./login/Login";
 import Signup, { action as signUpAction } from "./login/Signup";
@@ -13,6 +13,7 @@ import TasksPage from "./components/Tasks";
 import AccountDetails from "./components/AccountDetails";
 import TasksList from "./components/TasksList";
 import {loader as tasksLoader} from "./components/TasksList"
+import { loader as homeLoader } from "./loaders/homeLoader";
 
 const router = createBrowserRouter([
   {
