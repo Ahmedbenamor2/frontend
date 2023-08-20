@@ -12,8 +12,9 @@ import { far } from "@fortawesome/free-regular-svg-icons";
 import TasksPage from "./components/Tasks";
 import AccountDetails from "./components/AccountDetails";
 import TasksList from "./components/TasksList";
-import {loader as tasksLoader} from "./components/TasksList"
+import { loader as tasksLoader } from "./loaders/tasksLoader";
 import { loader as homeLoader } from "./loaders/homeLoader";
+
 
 const router = createBrowserRouter([
   {
@@ -23,13 +24,13 @@ const router = createBrowserRouter([
       { path: "signup", element: <Signup />, action: signUpAction },
       {
         path: "home", element: <Layout />, loader: homeLoader, id: 'home', children: [
-          { path:"", element: <HomePage /> ,children:[
-            {path:":projectId", element:<TasksList/>,loader:tasksLoader,id:'task-data'}
-          ]},
           {
-            path: "tasks", element: <TasksPage />/*, children: [
-              { path: ":projectId", element: <TasksList /> ,loader:tasksLoader,id:'task-data'}
-            ]*/
+            path: "", element: <HomePage />, children: [
+              { path: ":projectId", element: <TasksList />, loader: tasksLoader, id: 'task-data' }
+            ]
+          },
+          {
+            path: "tasks", element: <TasksPage />
           },
           { path: "account", element: <AccountDetails /> },
 

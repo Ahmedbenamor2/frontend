@@ -1,7 +1,45 @@
 .container{
+    width: 600px;
     display: block;
     background-color: aqua;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 15px;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.user{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: antiquewhite;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+.users{
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+    width:80px;
+    height: 25px;
+    padding: 5px;
+    margin-top: 19.920px;
+    background-color: black;
+    border-radius: 5px;
+}
+
+.user:nth-child(-n + 2):hover::after{
+    content: attr(name);
+    font-size: small;
+    position: absolute;
+    width: 165px;
+    height: 20px;
+    top:100%;
+    background-color: white;
 }
