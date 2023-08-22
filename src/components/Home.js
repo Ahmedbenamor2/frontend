@@ -18,6 +18,8 @@ const HomePage = () => {
             {data[1].map((project) => <li key={project.id}><ProjectItem id={project.id} title={project.title} description={project.description} users={project.users} /></li>)}
         </ul>
     }
+
+    
     return (
 
         <>

@@ -6,7 +6,7 @@
     width: 80px;
     background-color: rgb(25, 25, 189);
     margin-top: 0;
-    transition: 200ms ease;
+    transition: 200ms ease-in;
 }
 .sidebar:hover{
     width: 250px;
@@ -36,8 +36,13 @@
     border-top: solid 1px rgba(255, 255, 255, .2);
     border-bottom: solid 1px black;
     text-decoration: none;
-    transition: .4s;
+    transition: .4s ease;
 }
+
+.sidebar ul li:last-child{
+    
+}
+
 .sidebar ul li:hover{
     background-color: rgb(19, 5, 100);
     padding-left: 50px;

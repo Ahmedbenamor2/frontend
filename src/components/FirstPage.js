@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import { classes } from './FirstPage.module.css';
+import  classes  from './FirstPage.module.css';
 import { useEffect, useState } from 'react';
 
 const FirstPage = () => {
-    let [elt,setElt]=useState(<p>Loading...</p>);
+    let [elt,setElt]=useState(<div className={classes.loader}></div>);
     const navigate = useNavigate();
 
     useEffect(() => {

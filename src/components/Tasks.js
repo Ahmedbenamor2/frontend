@@ -1,24 +1,29 @@
-import React from 'react'
-// import { useRouteLoaderData } from 'react-router-dom';
-// import ProjectItem from '../elements/ProjectItem';
+import React, { useEffect, useState } from 'react'
+import classes from './Tasks.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useHover } from '../contexts/HoverContext';
+import { useRouteLoaderData } from 'react-router-dom';
+import AddProjectPopup from '../elements/AddProjectPopup';
 
 const TasksPage = () => {
-  //const data=useRouteLoaderData('home');
-  // let projectsComponent;
+  const [user,projects]=useRouteLoaderData('home');
+  const [trigger,setTrigger]=useState(false);
 
-  //   if (data[1].statusCode === 404) {
-  //       projectsComponent = <p>{data[1].message}</p>
-  //   }
-  //   else {
-  //       projectsComponent = <ul> 
-  //           {data[1].map((project) => <li key={project.id}><ProjectItem id={project.id} title={project.title} description={project.description}/></li>)}
-  //       </ul>
-  //   }
+  const clickHandler=()=>{
+    setTrigger(!trigger);
+  }
+ 
+  
+  const {isHovered}=useHover();
   return (
-    <div>
-      <h1>this is the tasks page!</h1>
-      
-    </div>
+    <>
+      <div className={`${classes.container} ${isHovered ? classes.sidebarHovered : ''}`}>
+        <div className={classes.addProject} onClick={clickHandler}><FontAwesomeIcon icon="fa-solid fa-circle-plus"/><p>Add project</p></div>
+        {projects.map((project)=><div key={project.id} className={classes.addProject}><p>{project.title}</p></div>)}
+        <AddProjectPopup trigger={trigger} onClickDropBack={clickHandler} />
+      </div>
+    </>
   )
 }
+
 export default TasksPage;

@@ -14,6 +14,7 @@ import AccountDetails from "./components/AccountDetails";
 import TasksList from "./components/TasksList";
 import { loader as tasksLoader } from "./loaders/tasksLoader";
 import { loader as homeLoader } from "./loaders/homeLoader";
+import { HoverProvider } from "./contexts/HoverContext";
 
 
 const router = createBrowserRouter([
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />
+  return <HoverProvider><RouterProvider router={router} /></HoverProvider>
 }
 
 export default App;
