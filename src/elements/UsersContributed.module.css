@@ -2,14 +2,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
+    position: relative; 
     background-color: antiquewhite;
     width: 25px;
     height: 25px;
     border-radius: 50%;
 }
 
-.user:nth-child(-n + 2):hover::after{
+.user:hover::after{
     content: attr(name);
     font-size: small;
     position: absolute;

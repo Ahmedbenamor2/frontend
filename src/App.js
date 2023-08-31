@@ -15,6 +15,14 @@ import TasksList from "./components/TasksList";
 import { loader as tasksLoader } from "./loaders/tasksLoader";
 import { loader as homeLoader } from "./loaders/homeLoader";
 import { HoverProvider } from "./contexts/HoverContext";
+//import AddProjectPopup from "./elements/AddProjectPopup";
+import {action as addProjectAction} from './actions/addProject';
+//import { LoadingProvider } from "./contexts/LoadingContext";
+import ProjectPage from "./components/Project";
+import {loader as projectLoader} from './loaders/projectLoader';
+import AddTaskPopup from "./elements/AddTaskPopup";
+import {action as addTaskAction} from './actions/addTask';
+
 
 
 const router = createBrowserRouter([
@@ -31,7 +39,12 @@ const router = createBrowserRouter([
             ]
           },
           {
-            path: "tasks", element: <TasksPage />
+            path: "projects",children:[
+              {index:true,element:<TasksPage /> ,action:addProjectAction},
+              {path:":projectId" ,element:<ProjectPage />,loader:projectLoader,children:[
+                {path:"add",element:<AddTaskPopup/>,action:addTaskAction,id:'add'}
+              ]}
+            ]
           },
           { path: "account", element: <AccountDetails /> },
 

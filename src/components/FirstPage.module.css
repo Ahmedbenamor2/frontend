@@ -7,7 +7,7 @@ h1{
     color: blue;   
 }
 
-button{
+ /* button{
     padding-left:20px;
     padding-right:20px ;
     padding-top: 10px;
@@ -19,7 +19,7 @@ button{
 }
 button:hover{
     box-shadow: 5px 5px #000;
-}
+}  */
 
 .loader {
     width:50px;

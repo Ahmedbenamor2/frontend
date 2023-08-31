@@ -1,5 +1,5 @@
 .container{
-    width: 600px;
+    width: 1000px;
     display: block;
     background-color: aqua;
     padding: 10px;
@@ -24,10 +24,10 @@
 }
 .users{
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 5px;
-    width:80px;
-    height: 25px;
+    width:100px;
+    height: max-content;
     padding: 5px;
     margin-top: 19.920px;
     background-color: black;

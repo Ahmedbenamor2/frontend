@@ -12,18 +12,20 @@
 }
 
 .popupInner{
-    position: relative;
+    position: absolute;
     width: 100%;
     max-width: 400px;
-    height: 100%;
-    max-height: 600px;
+    height: max-content;
     background-color: #606061;
     border-radius: 5px;
-    padding-left: 10px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+    /* left:50%;
+    top:50%;
+    transform: translate(-50%,-50%); */
+    gap:10px;
     
 }
 
@@ -39,4 +41,33 @@
 
 .popupInner button:hover{
     background-color: #9c9c9c;
+}
+
+.formElement{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+}
+
+.formElement input{
+    width:300px;
+    height: 20px;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+.formElement button{
+    cursor: pointer;
+    position: relative;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    margin-top: 20px;
+}
+
+.formElement button:disabled{
+    cursor: not-allowed;
 }

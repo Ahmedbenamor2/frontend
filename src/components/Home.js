@@ -23,9 +23,11 @@ const HomePage = () => {
     return (
 
         <>
+        <div className={styles.container}>
             <h1>Welcome to your profile!</h1>
-            <h2 style={{ color: '#0047AB', textAlign: 'center' }}>{name}</h2>
+            <h2 id='user'>{name}</h2>
             {projectsComponent}
+        </div>
         </>
     )
 }

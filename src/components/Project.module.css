@@ -1,0 +1,95 @@
+.container {
+  width: 100;
+  height: 100vh;
+  padding-left: 90px;
+  transition: 0.2 ease;
+}
+
+.projectDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: max-content;
+  padding: 10px;
+  /* background-color: darkturquoise; */
+}
+
+.projectDetails div input{
+  width: fit-content;
+  overflow:scroll;
+}
+
+.contributors ul {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+.contributors ul li {
+  display: block;
+}
+
+.tasks {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.tasksContainer {
+  margin-top: 10px;
+  width: 20vw;
+  min-width: fit-content;
+  height: max-content;
+  background-color: aqua;
+  border-radius: 10px;
+  padding: 10px;
+}
+.tasksContainer ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0;
+  gap: 10px;
+}
+.tasksContainer h2{
+    padding-left: 20px;
+}
+.tasksContainer ul li {
+  display: block;
+  background-color: aquamarine;
+  width: 15vw;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.tasksContainer ul li div{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.tasksContainer ul li div svg{
+  visibility: hidden;
+}
+
+.tasksContainer ul li:hover div svg{
+  visibility: visible;
+}
+
+
+.tasksContainer ul li:last-child div{
+    justify-content: flex-start;
+    align-items: center;
+    gap:5px;
+}
+
+.tasksContainer ul li:last-child div svg{
+    visibility:visible ;
+    /* margin-top: 16px; */
+}
+
+.isHovered {
+  padding-left: 270px;
+}
+

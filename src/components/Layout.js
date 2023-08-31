@@ -14,7 +14,7 @@ const Layout=()=>{
             <header>Task management</header>
             <ul>
                 <NavLink to='/home' className={({isActive})=>isActive ? classes.active : undefined} end><li><FontAwesomeIcon icon="fa-solid fa-house"/><span>Home</span></li></NavLink>
-                <NavLink to='tasks' className={({isActive})=>isActive ? classes.active : undefined}><li><FontAwesomeIcon icon="fa-solid fa-list-check" /><span>Tasks</span></li></NavLink>
+                <NavLink to='projects' className={({isActive})=>isActive ? classes.active : undefined}><li><FontAwesomeIcon icon="fa-solid fa-list-check" /><span>Projects</span></li></NavLink>
                 <NavLink to='account' className={({isActive})=>isActive ? classes.active : undefined}><li><FontAwesomeIcon icon="fa-solid fa-user" /><span>Account details</span></li></NavLink>
                 <Link to='/'><li onClick={logoutHandler}><FontAwesomeIcon icon="fa-solid fa-power-off" /><span>Logout</span></li></Link>
             </ul>

@@ -14,8 +14,8 @@ const ProjectItem = ({ id, title, description, users }) => {
       <div className={styles.header}>
         <h2>{title}</h2>
         
-        {users.length<=2  &&  <div className={styles.users}>{users.map((userId)=><UsersContributed id={userId} />)}</div>}
-        {users.length>2 && <div className={styles.users}>{users.slice(0,2).map((userId)=><UsersContributed id={userId} />)}<div className={styles.user}><p>{`+${users.length-2}`}</p></div></div>}
+        {users.length<=2  &&  <div className={styles.users}>{users.map((userId)=><UsersContributed id={userId} key={userId} />)}</div>}
+        {users.length>2 && <div className={styles.users}>{users.slice(0,2).map((userId)=><UsersContributed id={userId} key={userId} />)}<div className={styles.user}><p>{`+${users.length-2}`}</p></div></div>}
         
       </div>
       <main>
