@@ -1,0 +1,98 @@
+.container{
+    position: absolute;
+    width:100vw;
+    height: 100vh;
+    background-color: transparent;
+    left:0;
+    top:0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.details_popup{
+    position: relative;
+    width:35vw;
+    height: max-content;
+    background-color: #C7C6E2;
+    display: flex;
+    justify-content:center;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 5px;
+}
+
+.details_popup .header{
+    border-bottom: 2px solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.header h2{
+    padding-left: 10px;
+}
+
+.header button{
+    margin: 5px;
+    padding: 7px;
+    background-color: inherit;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.header button:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.main form{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap:10px;
+}
+
+.submit{
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    justify-content: flex-end;
+    gap:5px;
+    border-top:2px solid;
+    margin-top: 15px;
+}
+
+.submit button{
+    padding:10px 20px 10px 20px;
+    font-weight: bold;
+    background-color: inherit;
+    border:solid 2px green;
+    color:green;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.submit button:nth-child(1){
+    color: red;
+    border-color: red;
+}
+
+.submit button:disabled{
+    cursor:not-allowed;
+}
+
+.form_elt{
+    display: flex;
+    width: 100%;
+    padding-right: 10px;
+    justify-content: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding-left: 10px;
+    gap:2px;
+}
+

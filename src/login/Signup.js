@@ -2,6 +2,7 @@ import styles from './Login.module.css';
 import classes from './Signup.module.css';
 import { useEffect, useRef, useState } from 'react';
 import { Form, redirect, useActionData } from 'react-router-dom';
+import ui from '../UI/Button.module.css';
 
 const Signup=()=>{
     const emailRef=useRef('');
@@ -62,7 +63,7 @@ const Signup=()=>{
                 <input type='password' className={styles.input} ref={pwRef} name='password' />
                 <label className={styles.label}>confirm password</label>
                 <input type='password' className={styles.input} ref={checkPwRef} name='checkPw' />
-                <button className={styles.button}>Sign up</button>
+                <button className={ui.button}>Sign up</button>
             </Form>
         </div>
         </div>

@@ -1,0 +1,16 @@
+.button{
+    padding: 10px 20px 10px 20px;
+    border-radius: 50px;
+    border: solid 2px #088395;
+    color:#088395;
+    font-weight: bold;
+    transition:background-color .5s ease-out;
+    font-family: "Roboto Slab", serif;
+    margin: 3px;
+    position: relative;
+    background-color: transparent;
+}
+.button:hover{
+    background-color:#088395;
+    color:#fff;
+}

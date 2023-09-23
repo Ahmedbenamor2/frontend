@@ -1,82 +1,109 @@
-import React, { useEffect, useState,useRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import classes from './Project.module.css';
-import { Link, Outlet, useLoaderData, useParams } from 'react-router-dom';
+import {  Outlet, useLoaderData, useParams, useSubmit } from 'react-router-dom';
 import UsersContributed from '../elements/UsersContributed';
 import { useHover } from '../contexts/HoverContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import jwtDecode from 'jwt-decode';
+import { DragDropContext } from 'react-beautiful-dnd';
+import TasksClassificationList from '../elements/TasksClassificationList';
+import { useInfo } from '../contexts/InfoContext';
 
 
 const ProjectPage = () => {
+
   const projectData = useLoaderData();
   const { isHovered } = useHover();
-  const [tasksData, setTasksData] = useState(null);
   const params = useParams();
-  const [isDisabled,setIsDisabled]=useState(true);
-  const descriptionRef=useRef();
-
-  useEffect(() => {
-    async function getTasks() {
-      const response = await fetch(`http://localhost:3333/task/${params.projectId}/get`);
-      if (!response.ok) {
-        setTasksData(null);
-      }
-      else {
-        const data = await response.json();
-        setTasksData(data);
-      }
-    }
-    getTasks();
-  });
+  const [isDisabled, setIsDisabled] = useState(true);
+  const descriptionRef = useRef();
+  const titleRef = useRef();
+  const submit=useSubmit();
+  const jwt = localStorage.getItem('jwt');
+  const currentUser = jwtDecode(jwt).userId;
 
   useEffect(()=>{
-    if(!isDisabled){
+    const main=document.getElementById('project_div');
+    main.style.overflow='auto';
+  });
+  
+  useEffect(() => {
+    if (!isDisabled) {
       descriptionRef.current.focus();
+      titleRef.current.focus();
     }
-  },[isDisabled]);
+  }, [isDisabled]);
 
-  function addList(status) {
-    return tasksData.filter((task) => task.status === status).map((task) => <li key={task.id}>
-      <div>
-        <h3>{task.title}</h3>
-        <FontAwesomeIcon icon="fa-solid fa-pen-to-square" />
-      </div>
-    </li>)
+
+  const editTask = () => {
+    if (currentUser === projectData.users[0]) {
+      setIsDisabled(false);
+    }
+    else {
+
+    }
   }
 
-  const editDescription=()=>{
-    setIsDisabled(false);
-  }
-
-  const updateData=async()=>{
-    const jwt=localStorage.getItem('jwt');
-    const userId=jwtDecode(jwt).userId;
-    const response=await fetch(`http://localhost:3333/project/${userId}/${params.projectId}/edit`,{
-      method:'PATCH',
-      body:JSON.stringify({
-        title:projectData.title,
-        description:descriptionRef.current.value
+  const updateData = async () => {
+    const response = await fetch(`http://localhost:3333/project/${currentUser}/${params.projectId}/edit`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        title: titleRef.current.value,
+        description: descriptionRef.current.value
       }),
-      headers:{'Content-Type':'application/json'}
+      headers: { 'Content-Type': 'application/json' }
     })
 
-    if(!response.ok){
+    if (!response.ok) {
       console.log('an error occured!');
     }
 
-    const data=await response.text();
-    console.log(data);
+    const data = await response.text();
     setIsDisabled(true);
   }
 
+  const dragEndHandler = async (result) => {
+    const draggedTask = projectData.tasks.filter((task) => task.id === result.draggableId)[0];
+    const deadlineDate = new Date(draggedTask.deadline);
+    draggedTask.status = result.destination.droppableId;
+
+    const response = await fetch(`http://localhost:3333/task/${params.projectId}/${draggedTask.id}/edit`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        title: draggedTask.title,
+        description: draggedTask.description,
+        deadline: `${deadlineDate.getFullYear()}-${(deadlineDate.getMonth() + 1).toString().padStart(2, '0')}-${deadlineDate.getDate().toString().padStart(2, '0')}`,
+        status: result.destination.droppableId
+      }),
+      headers: { 'Content-type': 'application/json' }
+    });
+    if (!response.ok) {
+      console.log('an error occured!');
+    }
+    const data = await response.text();
+  }
+
+  const { openModal,setMessage } = useInfo();
+  
+  const deleteProjectHandler = async () => {
+    const confirmation = window.confirm('Are you sure you want to delete this project?');
+    if (confirmation) {
+      submit(null,{method:'delete'});
+      setMessage('Project deleted successfully!');
+      openModal();
+    }
+  }
+
+  
+
   return (
     <>
-      <div className={`${classes.container} ${isHovered ? classes.isHovered : ''}`}>
+      <div className={`${classes.container} ${isHovered ? classes.isHovered : ''}`} id='project_div'>
         <div className={classes.projectDetails}>
           <div>
-            <h1>{projectData.title}</h1>
-            <input type='text' defaultValue={projectData.description} disabled={isDisabled} style={{border:'none'}} ref={descriptionRef} />
-            {isDisabled?<FontAwesomeIcon icon="fa-solid fa-pen-to-square" style={{color: "#a8a8a8"}} onClick={editDescription} />:<FontAwesomeIcon icon="fa-regular fa-square-check" style={{color: "#a8a8a8"}} onClick={updateData} />}
+            <input type='text' defaultValue={projectData.title} disabled={isDisabled} style={{ border: 'none' }} ref={titleRef} />
+            <textarea type='text' defaultValue={projectData.description} disabled={isDisabled} style={{ border: 'none', resize: 'none' }} ref={descriptionRef} cols='40' rows='3' />
+            {isDisabled ? <div className={currentUser === projectData.users[0] ? classes.admin : classes.member}><FontAwesomeIcon icon="fa-solid fa-pen-to-square" style={{ color: "#a8a8a8" }} onClick={editTask} /></div> : <div><FontAwesomeIcon icon="fa-regular fa-square-check" style={{ color: "#a8a8a8", cursor: 'pointer' }} onClick={updateData} /></div>}
             <div className={classes.creator}>
               <p><strong>created by:</strong></p>
               <UsersContributed id={projectData.users[0]} />
@@ -84,34 +111,19 @@ const ProjectPage = () => {
           </div>
           <div className={classes.contributors}>
             <p><strong>users contributed:</strong></p>
-            <ul>{projectData.users.map((user, index) => (<li><UsersContributed key={index} id={user} /></li>))}</ul>
+            <ul>{projectData.users.map((user, index) => (<li><UsersContributed key={user} id={user} /></li>))}</ul>
           </div>
         </div>
-        <div className={classes.tasks}>
-          <div className={classes.tasksContainer} id='To-do'>
-            <h2>To-do</h2>
-            <ul>
-              {(tasksData && tasksData.filter((task) => task.status === 'To-do')) ? addList('To-do') : ''}
-              <Link to={{pathname:`/home/projects/${params.projectId}/add`,search:'?status=To-do'}}><li><div><FontAwesomeIcon icon="fa-solid fa-plus" style={{ color: "#000000", }} /><p>Add task</p></div></li></Link>
-            </ul>
+        <DragDropContext onDragEnd={dragEndHandler}>
+          <div className={classes.tasks}>
+            <TasksClassificationList tasks={projectData.tasks} status='To-do' />
+            <TasksClassificationList tasks={projectData.tasks} status={'In progress'} />
+            <TasksClassificationList tasks={projectData.tasks} status={'Completed'} />
           </div>
-          <div className={classes.tasksContainer} id='In progress'>
-            <h2>In progress</h2>
-            <ul>
-              {(tasksData && tasksData.filter((task) => task.status === 'In progress')) ? addList('In progress') : ''}
-              <li><div><FontAwesomeIcon icon="fa-solid fa-plus" style={{ color: "#000000", }} /><p>Add task</p></div></li>
-            </ul>
-          </div>
-          <div className={classes.tasksContainer} id='Completed'>
-            <h2>Completed</h2>
-            <ul>
-              {(tasksData && tasksData.filter((task) => task.status === 'Completed')) ? addList('Completed') : ''}
-              <li><div><FontAwesomeIcon icon="fa-solid fa-plus" style={{ color: "#000000", }} /><p>Add task</p></div></li>
-            </ul>
-          </div>
-        </div>
+        </DragDropContext>
+        <button className={classes.delete_project} onClick={deleteProjectHandler}>Delete project</button>
       </div>
-      <Outlet/>
+      <Outlet />
     </>
   )
 }

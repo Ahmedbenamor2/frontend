@@ -1,6 +1,6 @@
  import React, { useRef } from 'react'
  import classes from './AddTaskPopup.module.css';
- import { Form, Link, useActionData, useLocation, useParams } from 'react-router-dom';
+ import { Form, Link, useActionData, useLocation, useNavigate, useParams } from 'react-router-dom';
  import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
@@ -12,6 +12,8 @@
    const descRef = useRef();
    const deadlineRef = useRef();
    const params = useParams();
+   const navigate=useNavigate();
+   const popupRef=useRef();
 
    const data=useActionData();
    if(typeof data==='string'){
@@ -24,9 +26,15 @@
      deadlineRef.current.value = '';
    }
 
+   const navigateBackHandler=(event)=>{
+    if(!popupRef.current.contains(event.target)){
+      navigate(`/home/projects/${params.projectId}`);
+    }
+   }
+
    return (
-     <div className={classes.container}>
-       <div className={classes.popup}>
+     <div className={classes.container} onClick={navigateBackHandler}>
+       <div className={classes.popup} ref={popupRef}>
          <div className={classes.header}>
            <h2>Add new task</h2>
            <Link to={`/home/projects/${params.projectId}`}><button><FontAwesomeIcon icon="fa-solid fa-xmark" style={{ color: "#000000", }} /></button></Link>

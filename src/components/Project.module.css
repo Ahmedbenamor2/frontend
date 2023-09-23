@@ -1,8 +1,7 @@
 .container {
-  width: 100;
   height: 100vh;
   padding-left: 90px;
-  transition: 0.2 ease;
+  transition: .3s ease-out;
 }
 
 .projectDetails {
@@ -14,9 +13,32 @@
   /* background-color: darkturquoise; */
 }
 
-.projectDetails div input{
-  width: fit-content;
-  overflow:scroll;
+.projectDetails div:first-child{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap:10px; 
+}
+
+.creator{
+  width: 10rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap:10px;
+}
+
+.projectDetails div input {
+  width: auto;
+  overflow: visible;
+  font-size: xx-large;
+  font-weight: bolder;
+  color: #2722BF;
+  background-color: transparent;
+}
+
+.projectDetails div textarea{
+  background-color: transparent;
 }
 
 .contributors ul {
@@ -35,61 +57,64 @@
   gap: 10px;
 }
 
-.tasksContainer {
-  margin-top: 10px;
-  width: 20vw;
-  min-width: fit-content;
-  height: max-content;
-  background-color: aqua;
-  border-radius: 10px;
-  padding: 10px;
-}
-.tasksContainer ul {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 0;
-  gap: 10px;
-}
-.tasksContainer h2{
-    padding-left: 20px;
-}
-.tasksContainer ul li {
-  display: block;
-  background-color: aquamarine;
-  width: 15vw;
-  padding: 5px;
-  border-radius: 10px;
-}
-
-.tasksContainer ul li div{
-    display: flex;
-    justify-content: space-between;
-}
-
-
-.tasksContainer ul li div svg{
-  visibility: hidden;
-}
-
-.tasksContainer ul li:hover div svg{
-  visibility: visible;
-}
-
-
-.tasksContainer ul li:last-child div{
-    justify-content: flex-start;
-    align-items: center;
-    gap:5px;
-}
-
-.tasksContainer ul li:last-child div svg{
-    visibility:visible ;
-    /* margin-top: 16px; */
-}
 
 .isHovered {
-  padding-left: 270px;
+   padding-left: 270px;
 }
 
+.admin {
+  position: relative;
+  width: min-content;
+}
+.admin svg{
+  cursor: pointer;
+}
+
+.admin:hover::after {
+  content: 'You can edit the details of the project here';
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  top:100%;
+  background-color: white;
+  font-size: small;
+  border: solid 1px black;
+  padding: 5px;
+}
+
+.member{
+  position:relative ;
+  width: min-content;
+}
+
+.member svg{
+  cursor:not-allowed;
+}
+
+.member:hover::after{
+  content: 'Only the admin can change the details of the project';
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  top:100%;
+  background-color: white;
+  font-size: small;
+  border: solid 1px black;
+  padding: 5px;
+}
+
+.delete_project{
+  position: relative;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin:10px;
+  border-color: red;
+  background-color: transparent;
+  color:red;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+}

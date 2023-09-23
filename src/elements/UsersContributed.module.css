@@ -9,6 +9,11 @@
     border-radius: 50%;
 }
 
+.user:hover{
+    outline: solid 2px transparent;
+    border:solid 2px;
+}
+
 .user:hover::after{
     content: attr(name);
     font-size: small;

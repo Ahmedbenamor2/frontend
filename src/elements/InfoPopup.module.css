@@ -1,0 +1,48 @@
+.container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: blue;
+    padding: 10px 20px;
+    border-radius: 5px;
+    animation: fadeOut 5s ease-in-out;
+  }
+
+  .progress_container{
+    position: relative;
+    background-color: transparent;
+    width:100px;
+    height: 10px;
+    border:solid 1px;
+    margin-top: 10px;
+}
+
+.progress_bar{
+    position: relative;
+    background-color: blue;
+    width: 0;
+    height: 10px;
+    top:50%;
+    transform: translate(0,-50%);
+    animation: 1s ease 0s 1 forwards progress;
+}
+  
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes progress {
+    0%{
+        width: 0px;
+    }
+    100%{
+        width:100px;
+    }
+}

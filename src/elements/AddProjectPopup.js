@@ -2,6 +2,9 @@ import { Form, useActionData, useNavigation } from 'react-router-dom';
 import classes from './AddProjectPopup.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState, useEffect } from 'react';
+import { useInfo } from '../contexts/InfoContext';
+
+
 
 const AddProjectPopup = ({ trigger, onClosePopup }) => {
     const [error, setError] = useState('');
@@ -10,6 +13,7 @@ const AddProjectPopup = ({ trigger, onClosePopup }) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [position, setPosition] = useState({ x: 300, y: 10 });
+    const {openModal,setMessage}=useInfo();
 
 
     const handleDragStart = (event) => {
@@ -55,6 +59,8 @@ const AddProjectPopup = ({ trigger, onClosePopup }) => {
             onClosePopup(); // Close the popup
             setTitle('');
             setDescription('');
+            setMessage('Project added successfully!');
+            openModal();
         }
     };
 
@@ -82,6 +88,7 @@ const AddProjectPopup = ({ trigger, onClosePopup }) => {
                     </div>
                 </Form>
             </div>
+            
         </div>
     ) : ''
 }

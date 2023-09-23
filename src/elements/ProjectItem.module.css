@@ -1,10 +1,14 @@
 .container{
     width: 1000px;
     display: block;
-    background-color: aqua;
+    background-color: #B3B2D7;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 15px;
+}
+
+.container a{
+    color: #fff;
 }
 
 .header{

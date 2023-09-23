@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from './Login.module.css';
 import { Link, Form, redirect, useActionData } from "react-router-dom";
-//import jwtDecode from 'jwt-decode';
+import ui from '../UI/Button.module.css';
 
 const Login = (props) => {
   const [error, setError] = useState('');
@@ -38,7 +38,7 @@ const Login = (props) => {
         <input type="email" className={styles.input} ref={emailRef} name="email" />
         <label className={styles.label}>Password:</label>
         <input type="password" className={styles.input} ref={pwRef} name="password" />
-        <button className={styles.button}>se connecter</button>
+        <button className={ui.button}>se connecter</button>
         <Link to='/signup'>You don't have an account?</Link>
       </Form>
     </div>

@@ -1,13 +1,11 @@
- /* body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}  */
-h1{
-    color: blue;   
+body {
+  font-family: "Roboto Slab", serif;
 }
+/* h1 {
+  color: blue;
+} */
 
- /* button{
+/* button{
     padding-left:20px;
     padding-right:20px ;
     padding-top: 10px;
@@ -22,19 +20,68 @@ button:hover{
 }  */
 
 .loader {
-    width:50px;
-    height:24px;
-    background: 
-      radial-gradient(circle closest-side,#766DF4 90%,#0000) 0%   50%,
-      radial-gradient(circle closest-side,#766DF4 90%,#0000) 50%  50%,
-      radial-gradient(circle closest-side,#766DF4 90%,#0000) 100% 50%;
-    background-size:calc(100%/3) 12px;
-    background-repeat: no-repeat;
-    animation:d3 1s infinite linear;
+  width: 50px;
+  height: 24px;
+  background: radial-gradient(circle closest-side, #766df4 90%, #0000) 0% 50%,
+    radial-gradient(circle closest-side, #766df4 90%, #0000) 50% 50%,
+    radial-gradient(circle closest-side, #766df4 90%, #0000) 100% 50%;
+  background-size: calc(100% / 3) 12px;
+  background-repeat: no-repeat;
+  animation: d3 1s infinite linear;
+}
+
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.slice {
+  position: absolute;
+  height: 100vh;
+}
+
+.slice:nth-child(1) {
+  width: 30%;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  background-color: #f2f7a1;
+}
+
+.slice:nth-child(1) h1 {
+  color: #088395;
+}
+
+.slice:nth-child(2) {
+  width: 70%;
+  right: 0;
+  top: 0;
+  background-image: url("https://images.unsplash.com/photo-1586473219010-2ffc57b0d282?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGFza3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@keyframes d3 {
+  20% {
+    background-position: 0% 0%, 50% 50%, 100% 50%;
   }
-  @keyframes d3 {
-      20%{background-position:0%   0%, 50%  50%,100%  50%}
-      40%{background-position:0% 100%, 50%   0%,100%  50%}
-      60%{background-position:0%  50%, 50% 100%,100%   0%}
-      80%{background-position:0%  50%, 50%  50%,100% 100%}
+  40% {
+    background-position: 0% 100%, 50% 0%, 100% 50%;
   }
+  60% {
+    background-position: 0% 50%, 50% 100%, 100% 0%;
+  }
+  80% {
+    background-position: 0% 50%, 50% 50%, 100% 100%;
+  }
+}

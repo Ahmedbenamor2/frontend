@@ -6,7 +6,8 @@
 }
 
 .filterByStatus{
-    background-color: blue;
+    position: relative;
+    background-color: #5242AE;
     padding: 10px;
     width:100%;
     max-width: 300px;
@@ -20,6 +21,7 @@
 }
 
 .ul{
+    position: relative;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -28,4 +30,5 @@
 
 .ul li{
     display: block;
+    transform: translate(0,0);
 }

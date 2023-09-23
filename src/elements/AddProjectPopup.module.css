@@ -16,7 +16,7 @@
     width: 100%;
     max-width: 400px;
     height: max-content;
-    background-color: #606061;
+    background-color: #B3B2D7;
     border-radius: 5px;
     display: flex;
     justify-content: flex-start;
@@ -33,14 +33,14 @@
 
 .popupInner  button{
     position: relative;
-    background-color: #606061;
+    background-color: #C7C6E2;
     box-shadow: none;
     border-radius: 5px;
     left:170px;
 }
 
 .popupInner button:hover{
-    background-color: #9c9c9c;
+    background-color: rgb(183, 183, 197);
 }
 
 .formElement{
@@ -66,8 +66,14 @@
     top:50%;
     transform: translate(-50%,-50%);
     margin-top: 20px;
+    color:#000;
+    padding: 10px 20px 10px 20px;
 }
 
 .formElement button:disabled{
     cursor: not-allowed;
+}
+
+.formElement textarea{
+    resize: none;
 }

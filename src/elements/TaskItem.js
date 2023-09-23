@@ -47,7 +47,7 @@ const TaskItem = ({ title, description, deadline }) => {
       <main>
         <p><strong>Description: </strong>{description}</p>
         <p>{deadlineDate.toLocaleDateString('en-GB', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
-        <p style={remainingTimeInMilisecondes > 86400000 ? { color: 'white' } : { color: '#8B0000' }}>{`${remainingTime}`}</p>
+        <p style={remainingTimeInMilisecondes > 86400000 ? { color: 'green' } : { color: '#8B0000' }}>{`${remainingTime}`}</p>
 
       </main>
     </div>

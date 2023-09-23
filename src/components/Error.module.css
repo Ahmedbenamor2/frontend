@@ -1,0 +1,17 @@
+.container{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:5px;
+    background-color: #F5F5FA;
+}
+
+.container span{
+    font-size: 13rem;
+}
