@@ -10,7 +10,7 @@ const Login = (props) => {
 
   const res = useActionData();
   useEffect(() => {
-    res ? setError(<p style={{color:'red',fontSize:10}}>{res.message}</p>) : setError('')
+    res ? setError((res.message).map((error, index) => <li key={index}>{error}</li>)) : setError('');
   }, [res])
 
 
@@ -31,19 +31,21 @@ const Login = (props) => {
 
   return (
     <div className={styles.body}>
-    <div className={styles.form}>
-      <Form method="post">
-        {error}
-        <label className={styles.label}>Username(e-mail):</label>
-        <input type="email" className={styles.input} ref={emailRef} name="email" />
-        <label className={styles.label}>Password:</label>
-        <input type="password" className={styles.input} ref={pwRef} name="password" />
-        <button className={ui.button}>se connecter</button>
-        <Link to='/signup'>You don't have an account?</Link>
-      </Form>
+      <div className={styles.form}>
+          <ul>
+            {error}
+          </ul>
+        <Form method="post">
+          <input type="text" className={styles.input} ref={emailRef} name="email" required />
+          <label className={styles.label}>Email</label>
+          <input type="password" className={styles.input} ref={pwRef} name="password" required />
+          <label className={styles.label}>Password</label>
+          <button className={ui.button}>se connecter</button>
+          <Link to='/signup'>You don't have an account?</Link>
+        </Form>
+      </div>
     </div>
-    </div>
-    
+
   );
 };
 
@@ -69,8 +71,8 @@ export async function action({ request, params }) {
   }
   else {
     console.log('user connected successfully!');
-    const token=await response.text();
-    localStorage.setItem('jwt',token);
+    const token = await response.text();
+    localStorage.setItem('jwt', token);
     return redirect('/home');
   }
 

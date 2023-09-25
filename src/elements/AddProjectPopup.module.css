@@ -57,6 +57,7 @@
     height: 20px;
     border-radius: 5px;
     padding-left: 10px;
+    background-color: transparent;
 }
 
 .formElement button{
@@ -75,5 +76,8 @@
 }
 
 .formElement textarea{
+    border-radius: 5px;
     resize: none;
+    background-color: transparent;
+    padding: 5px;
 }

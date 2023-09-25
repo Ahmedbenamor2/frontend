@@ -10,6 +10,7 @@ const Layout=()=>{
     const {handleHover, handleMouseLeave } = useHover();
     return (
         <>
+        <Outlet/>
         <div className={classes.sidebar} onMouseEnter={handleHover} onMouseLeave={handleMouseLeave}>
             <header>Task management</header>
             <ul>
@@ -19,7 +20,6 @@ const Layout=()=>{
                 <Link to='/'><li onClick={logoutHandler}><FontAwesomeIcon icon="fa-solid fa-power-off" /><span>Logout</span></li></Link>
             </ul>
         </div>
-        <Outlet/>
         </>
     )
 }
